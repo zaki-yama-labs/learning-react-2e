@@ -1,5 +1,5 @@
-import React from "react";
+import StarRating from "./StarRating";
 
 export const App = () => {
-  return <div>Hello</div>;
+  return <StarRating />;
 };
