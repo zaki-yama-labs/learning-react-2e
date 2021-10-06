@@ -1,24 +1,33 @@
-import { FormEventHandler, MouseEventHandler, useRef } from "react";
+import { FormEventHandler, MouseEventHandler, useRef, useState } from "react";
 
 type Props = {
   onNewColor: (title: string, color: string) => void;
 };
 const AddColorForm = ({ onNewColor = (f) => f }: Props) => {
-  const txtTitle = useRef<HTMLInputElement>(null);
-  const hexColor = useRef<HTMLInputElement>(null);
+  const [title, setTitle] = useState("");
+  const [color, setColor] = useState("#000000");
 
   const submit: FormEventHandler = (e) => {
     e.preventDefault();
-    const title = txtTitle.current!.value;
-    const color = hexColor.current!.value;
     onNewColor(title, color);
-    txtTitle.current!.value = "";
-    hexColor.current!.value = "";
+    setTitle("");
+    setColor("");
   };
   return (
     <form onSubmit={submit}>
-      <input ref={txtTitle} type="text" placeholder="color title..." required />
-      <input ref={hexColor} type="color" required />
+      <input
+        value={title}
+        onChange={(event) => setTitle(event.target.value)}
+        type="text"
+        placeholder="color title..."
+        required
+      />
+      <input
+        value={color}
+        onChange={(event) => setColor(event.target.value)}
+        type="color"
+        required
+      />
       <button>ADD</button>
     </form>
   );
