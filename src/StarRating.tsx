@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa";
 
 type StarProps = {
   selected?: boolean;
-  onSelect: MouseEventHandler;
+  onSelect?: MouseEventHandler;
 };
 
 const Star = ({ selected = false, onSelect = (f) => f }: StarProps) => {
@@ -12,19 +12,24 @@ const Star = ({ selected = false, onSelect = (f) => f }: StarProps) => {
 
 type Props = {
   totalStars?: number;
+  selectedStars?: number;
+  onRate?: (rating: number) => void;
   style?: CSSProperties;
 };
 
-const StarRating = ({ totalStars = 5, style }: Props) => {
-  const [selectedStars, setSelectedStars] = useState(0);
-
+const StarRating = ({
+  totalStars = 5,
+  selectedStars = 0,
+  onRate = (f) => f,
+  style,
+}: Props) => {
   return (
     <div style={{ padding: "5px", ...style }}>
       {[...Array(totalStars)].map((_, i) => (
         <Star
           key={i}
           selected={selectedStars > i}
-          onSelect={() => setSelectedStars(i + 1)}
+          onSelect={() => onRate(i + 1)}
         />
       ))}
       <p>
