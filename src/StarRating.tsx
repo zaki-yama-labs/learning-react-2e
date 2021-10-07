@@ -1,4 +1,4 @@
-import { CSSProperties, MouseEventHandler, useState } from "react";
+import { CSSProperties, MouseEventHandler } from "react";
 import { FaStar } from "react-icons/fa";
 
 type StarProps = {

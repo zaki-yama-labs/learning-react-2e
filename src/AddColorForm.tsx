@@ -1,33 +1,29 @@
-import { FormEventHandler, MouseEventHandler, useRef, useState } from "react";
+import { FormEventHandler } from "react";
+
+import { useInput } from "./hooks";
 
 type Props = {
   onNewColor: (title: string, color: string) => void;
 };
 const AddColorForm = ({ onNewColor = (f) => f }: Props) => {
-  const [title, setTitle] = useState("");
-  const [color, setColor] = useState("#000000");
+  const [titleProps, resetTitle] = useInput("");
+  const [colorProps, resetColor] = useInput("#000000");
 
   const submit: FormEventHandler = (e) => {
     e.preventDefault();
-    onNewColor(title, color);
-    setTitle("");
-    setColor("");
+    onNewColor(titleProps.value, colorProps.value);
+    resetTitle();
+    resetColor();
   };
   return (
     <form onSubmit={submit}>
       <input
-        value={title}
-        onChange={(event) => setTitle(event.target.value)}
+        {...titleProps}
         type="text"
         placeholder="color title..."
         required
       />
-      <input
-        value={color}
-        onChange={(event) => setColor(event.target.value)}
-        type="color"
-        required
-      />
+      <input {...colorProps} type="color" required />
       <button>ADD</button>
     </form>
   );
