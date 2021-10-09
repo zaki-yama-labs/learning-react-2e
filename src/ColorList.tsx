@@ -1,26 +1,13 @@
-import Color, { Props as ColorProps } from "./Color";
+import Color from "./Color";
+import { useColors } from "./ColorProvider";
 
-type Props = {
-  colors: ColorProps[];
-  onRemoveColor?: (id: string) => void;
-  onRateColor?: (id: string, rating: number) => void;
-};
-
-const ColorList = ({
-  colors,
-  onRemoveColor = (f) => f,
-  onRateColor = (f) => f,
-}: Props) => {
+const ColorList = () => {
+  const { colors } = useColors();
   if (!colors.length) return <div>No Colors Listed.</div>;
   return (
     <div className="color-list">
       {colors.map((color) => (
-        <Color
-          key={color.id}
-          {...color}
-          onRemove={onRemoveColor}
-          onRate={onRateColor}
-        />
+        <Color key={color.id} {...color} />
       ))}
     </div>
   );

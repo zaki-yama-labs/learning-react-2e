@@ -1,5 +1,11 @@
 import { render } from "react-dom";
 
 import { App } from "./App";
+import ColorProvider from "./ColorProvider";
 
-render(<App />, document.getElementById("main"));
+render(
+  <ColorProvider>
+    <App />
+  </ColorProvider>,
+  document.getElementById("main")
+);

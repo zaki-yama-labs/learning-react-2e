@@ -1,5 +1,6 @@
 import { FaTrash } from "react-icons/fa";
 
+import { useColors } from "./ColorProvider";
 import StarRating from "./StarRating";
 
 export type Props = {
@@ -7,26 +8,18 @@ export type Props = {
   title: string;
   color: string;
   rating: number;
-  onRemove?: (id: string) => void;
-  onRate?: (id: string, rating: number) => void;
 };
 
-const Color = ({
-  id,
-  title,
-  color,
-  rating,
-  onRemove = (f) => f,
-  onRate = (f) => f,
-}: Props) => {
+const Color = ({ id, title, color, rating }: Props) => {
+  const { rateColor, removeColor } = useColors();
   return (
     <section>
       <h1>{title}</h1>
-      <button onClick={() => onRemove(id)}>
+      <button onClick={() => removeColor(id)}>
         <FaTrash />
       </button>
       <div style={{ height: 50, backgroundColor: color }} />
-      <StarRating selectedStars={rating} onRate={(r) => onRate(id, r)} />
+      <StarRating selectedStars={rating} onRate={(r) => rateColor(id, r)} />
     </section>
   );
 };
