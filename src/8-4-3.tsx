@@ -1,26 +1,4 @@
-import { useEffect, useState } from "react";
-
-export const useFetch = <Data,>(uri: string) => {
-  const [data, setData] = useState<Data>();
-  const [error, setError] = useState();
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (!uri) return;
-    setLoading(true);
-    fetch(uri)
-      .then((response) => response.json())
-      .then(setData)
-      .then(() => setLoading(false))
-      .catch(setError);
-  }, [uri]);
-
-  return {
-    loading,
-    data,
-    error,
-  };
-};
+import { useFetch } from "./hooks";
 
 type Data = {
   name: string;

@@ -1,11 +1,11 @@
 import { render } from "react-dom";
 
-import { App } from "./App";
+import { GitHubUser } from "./GitHubUser";
 import ColorProvider from "./ColorProvider";
 
 render(
   <ColorProvider>
-    <App />
+    <GitHubUser login="zaki-yama" />
   </ColorProvider>,
   document.getElementById("main")
 );
