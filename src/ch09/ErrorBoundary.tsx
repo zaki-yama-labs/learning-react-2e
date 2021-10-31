@@ -25,7 +25,7 @@ export class ErrorBoundary extends Component<Props> {
   }
 }
 
-const ErrorScreen = ({ error }: { error: Error }) => {
+export const ErrorScreen = ({ error }: { error: Error }) => {
   return (
     <div className="error">
       <h3>We are sorry...something went wrong</h3>
