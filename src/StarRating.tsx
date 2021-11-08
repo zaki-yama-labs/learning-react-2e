@@ -1,14 +1,6 @@
-import { CSSProperties, MouseEventHandler } from "react";
-import { FaStar } from "react-icons/fa";
+import { CSSProperties } from "react";
 
-type StarProps = {
-  selected?: boolean;
-  onSelect?: MouseEventHandler;
-};
-
-const Star = ({ selected = false, onSelect = (f) => f }: StarProps) => {
-  return <FaStar color={selected ? "red" : "grey"} onClick={onSelect} />;
-};
+import { Star } from "./Star";
 
 type Props = {
   totalStars?: number;
